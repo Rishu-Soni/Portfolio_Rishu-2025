@@ -1,0 +1,54 @@
+:root {
+  --NAV_mainColor: hsla(0, 0%, 80%, 0);
+  --NAV_side1Color: hsla(0, 0%, 80%, 0);
+  --NAV_side2Color: hsl(0, 0%, 80%, 0);
+  --NAV_BorderColor: hsl(0, 0%, 80%, 0);
+
+  --Hero_Color1: hsl(268, 100%, 45%);
+
+  --theme_ParaText_color: hsl(0, 0%, 85%);
+  --theme_HeadingText_color: hsl(0, 0%, 95%);
+
+  --theme_Light_shadow_color: hsl(0, 0, 95%);
+  --theme_Dark_shadow_color: hsl(0, 0, 5%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.scrollable_section {
+  width: 96vw;
+  height: 100vh;
+  margin-top: 80vh;
+  padding: 8px 4px;
+  justify-self: center;
+}
+.pageSection{
+  width: 96%;
+  height: 90vh;
+  margin: 8px auto;
+  border-radius: 20px;
+  background-color: hsla(0, 0%, 30%, 0.99);
+}
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate {
+  from {
+    --angle:0deg;
+  }
+  to {
+    --angle:360deg;
+  }
+}

@@ -1,0 +1,16 @@
+.handPng {
+  width: 100px;
+  height: 100px;
+
+  display: none;
+
+  position: fixed;
+  top: 85%;
+  left: 85%;
+
+  z-index: 200;
+}
+
+.visible {
+  display: block;
+}
