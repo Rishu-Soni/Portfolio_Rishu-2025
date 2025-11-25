@@ -4,13 +4,19 @@
   --NAV_side2Color: hsl(0, 0%, 80%, 0);
   --NAV_BorderColor: hsl(0, 0%, 80%, 0);
 
-  --Hero_Color1: hsl(268, 100%, 45%);
+  /* --Hero_Color1: hsl(268, 96%, 37%); #009876 */
+  --Hero_Color1: hsl(268, 100%, 37%);
+  --Hero_Color2: hsl(180, 100%, 59%);
+
+  --theme_backgroundColor_Deepest:hsl(0, 0%, 12%) ;
+  --theme_backgroundColor_Deep:hsl(0, 0%, 18%) ;
+  --theme_backgroundColor_Front:hsl(0, 0%, 24%) ;
 
   --theme_ParaText_color: hsl(0, 0%, 85%);
   --theme_HeadingText_color: hsl(0, 0%, 95%);
 
-  --theme_Light_shadow_color: hsl(0, 0, 95%);
-  --theme_Dark_shadow_color: hsl(0, 0, 5%);
+  --theme_Light_shadow_color: hsl(0, 0%, 45%);
+  --theme_Dark_shadow_color: hsl(0, 0%, 5%);
 }
 
 * {

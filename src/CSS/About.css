@@ -1,12 +1,101 @@
-.aboutSection{
-    height: 80vh;
-    width: 80vw;
-    background-color: blueviolet;
-    position:absolute;
-    display: flex;
+.aboutSection {
+  margin: 80vh 0 6vh 0;
+  justify-self: center;
+  height: 94vh;
+  width: 90vw;
+  max-width: 1600px;
+  background-color: var(--theme_backgroundColor_Deep);
+  position: static;
+  display: flex;
+  border-radius: 20px;
+  padding: 0 40px;
 }
-.My_Photo{
-    height: 80vh;
-    width: 80vw;
 
+.PhotoDiv {
+  display: flex;
+  width: 400px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.My_Photo {
+  border-radius: 50%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 350px;
+  width: 350px;
+  border: 4px solid var(--theme_backgroundColor_Front);
+  box-shadow: -3px -3px 10px var(--theme_Light_shadow_color),
+    3px 3px 10px var(--theme_Dark_shadow_color);
+}
+
+.textDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  margin: 10px 4% 10px 2%;
+  color: var(--theme_ParaText_color);
+}
+
+.About_title {
+  display: inline-block;
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--Hero_Color1), var(--Hero_Color2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 auto 15px;
+}
+.About_subtitle {
+  display: inline-block;
+  margin: 30px 0 15px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--Hero_Color1), var(--Hero_Color2), var(--Hero_Color2), var(--Hero_Color2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.highlight {
+  display: inline-block;
+  font-weight: 700;
+  color: #00cb9f;
+  background: linear-gradient(
+    90deg,
+    hsl(167, 100%, 41%),
+    rgb(255, 161, 67),
+    hsl(66, 100%, 68%),
+    hsl(0, 100%, 78%),
+    hsl(167, 100%, 41%)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.aboutPara {
+  margin: 4px 0 4px 0;
+}
+.Appeal_para{
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin: 20px 0 4px 0;
+}
+.highlight_appeal{
+  display: inline-block;
+  font-weight: 700;
+  color: #00cb9f;
+  background: linear-gradient(
+    90deg,
+    hsl(0, 100%, 50%),
+    hsl(76, 100%, 50%)
+    
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
