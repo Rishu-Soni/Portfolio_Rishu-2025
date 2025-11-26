@@ -9,7 +9,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background: var(--Hero_Color1);
+  background: var(--theme_backgroundColor_Deepest);
   /* filter: hue-rotate(300deg); */
 }
 
@@ -59,7 +59,7 @@
   font-weight: bold;
   font-size: 3.5rem;
   font-weight: 900;
-  background-color: var(--Hero_Color1);
+  background-color: var(--theme_backgroundColor_Deepest);
   color: var(--theme_HeadingText_color);
 }
 .FullStack_endText::before {
