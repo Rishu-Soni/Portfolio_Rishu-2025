@@ -11,5 +11,8 @@ createRoot(document.getElementById("root")).render(
     <Nav />
     <HandPng />
     <About />
+    <footer className="footer">
+      <p className="footer_text">© 2024 Rishu Soni. All rights reserved.</p>
+    </footer>
   </>
 );
