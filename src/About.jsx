@@ -2,15 +2,15 @@ import React, { useEffect, useRef } from "react";
 import myIMG from "./Assets/Images/me.png";
 import "./CSS/About.css";
 
-import HTML_logo from "./Assets/Images/Front-end_skills/html_logo.png";
-import CSS_logo from "./Assets/Images/Front-end_skills/css_logo.png";
-import JavaScript_logo from "./Assets/Images/Front-end_skills/javascript_logo.png";
-import React_logo from "./Assets/Images/Front-end_skills/react_logo.png";
+import HTML_logo from "./Assets/Images/skills/html_logo.png";
+import CSS_logo from "./Assets/Images/skills/css_logo.png";
+import JavaScript_logo from "./Assets/Images/skills/javascript_logo.png";
+import React_logo from "./Assets/Images/skills/react_logo.png";
 
-import C_logo from "./Assets/Images/back-end_skills/c_logo.png";
-import CPP_logo from "./Assets/Images/back-end_skills/c++_logo.png";
-import Java_logo from "./Assets/Images/back-end_skills/java_logo.png";
-import Python_logo from "./Assets/Images/back-end_skills/python_logo.png";
+import C_logo from "./Assets/Images/skills/c_logo.png";
+import CPP_logo from "./Assets/Images/skills/c++_logo.png";
+import Java_logo from "./Assets/Images/skills/java_logo.png";
+import Python_logo from "./Assets/Images/skills/python_logo.png";
 
 function About() {
   // 1. Create refs to access DOM elements safely

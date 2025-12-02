@@ -5,7 +5,7 @@
   flex-direction: row;
   position: static;
 
-  margin: calc(100vh - 40px) 0 6vh 0;
+  margin: calc(100vh - 40px) 0 10vh 0;
   width: 90vw;
   max-width: 1600px;
 }

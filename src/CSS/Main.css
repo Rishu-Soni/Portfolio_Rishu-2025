@@ -11,7 +11,6 @@
   --theme_backgroundColor_Deepest: hsl(0, 0%, 12%);
   --theme_backgroundColor_Deep: hsl(0, 0%, 20%);
   --theme_backgroundColor_Front: hsl(0, 0%, 28%);
-  --Hero_Color2: hsl(180, 100%, 59%);
 
   --theme_backgroundColor_Deepest_opp: hsl(0, 0%, 70%);
   --theme_backgroundColor_Deep_opp: hsl(0, 0%, 75%);
@@ -23,8 +22,8 @@
   --theme_ParaText_color_opp: hsl(0, 0%, 15%);
   --theme_HeadingText_color_opp: hsl(0, 0%, 5%);
 
-  --theme_Light_shadow_color: hsla(0, 0%, 90%, 0.7);
-  --theme_Dark_shadow_color: hsla(0, 0%, 5%, 0.7);
+  --theme_Light_shadow_color: hsla(0, 0%, 90%, 0.8);
+  --theme_Dark_shadow_color: hsla(0, 0%, 4%, 0.9);
 }
 
 * {
