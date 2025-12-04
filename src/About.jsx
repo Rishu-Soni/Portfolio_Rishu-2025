@@ -169,7 +169,7 @@ function About() {
         <img src={myIMG} alt="My_Photo" className="My_Photo" />
       </div>
       <div className="textDiv">
-        <h2 className="About_title">About ME</h2>
+        <h2 className="title">About ME</h2>
         <div className="aboutPara">
           The name is <span className="highlight"> RISHU SONI</span> hoping to clear Btech
           undergraduate program till 2029.
@@ -179,7 +179,7 @@ function About() {
           personality same as Millennials.
         </div>
 
-        <h3 className="About_subtitle">The "Dedicated Craftsman" </h3>
+        <h3 className="subtitle">The "Dedicated Craftsman" </h3>
 
         <div className="aboutPara">
           My dedication knows no clock{" "}
@@ -193,7 +193,7 @@ function About() {
           commitment is honored.
         </div>
 
-        <h3 className="About_subtitle">The "Growth-Driven MENACE"</h3>
+        <h3 className="subtitle">The "Growth-Driven MENACE"</h3>
 
         <div className="aboutPara">
           I am on my way to{" "}
@@ -208,7 +208,7 @@ function About() {
           quickly.
         </div>
 
-        <h3 className="About_subtitle skill_heading">SKILLS <p className="skillForYou_text" >(I got for YOU !!!)</p> </h3>
+        <h3 className="subtitle skill_heading">SKILLS <p className="skillForYou_text" >(I got for YOU !!!)</p> </h3>
 
         {/* 3. Attach refs to the DOM elements */}
         <div className="about_Skills_container " ref={containerRef}>

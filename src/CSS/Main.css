@@ -5,7 +5,7 @@
   --NAV_BorderColor: hsl(0, 0%, 80%, 0);
 
   /* --Hero_Color1: hsl(268, 96%, 37%); #009876 */
-  --Hero_Color1: hsl(268, 96%, 37%);
+  --Hero_Color1: hsl(268, 100%, 74%);
   --Hero_Color2: hsl(180, 100%, 59%);
 
   --theme_backgroundColor_Deepest: hsl(0, 0%, 12%);
@@ -23,7 +23,7 @@
   --theme_HeadingText_color_opp: hsl(0, 0%, 5%);
 
   --theme_Light_shadow_color: hsla(0, 0%, 90%, 0.8);
-  --theme_Dark_shadow_color: hsla(0, 0%, 4%, 0.9);
+  --theme_Dark_shadow_color: hsl(0, 0%, 0%);
 }
 
 * {

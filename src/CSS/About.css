@@ -40,7 +40,7 @@
   border-radius: 20px;
 }
 
-.About_title {
+.title {
   display: inline-block;
   font-size: 3.5rem;
   font-weight: 700;
@@ -57,7 +57,7 @@
   background-clip: text;
   margin: 0 auto 15px;
 }
-.About_subtitle {
+.subtitle {
   width: 390px;
   display: inline-block;
   margin: 30px 0 15px;

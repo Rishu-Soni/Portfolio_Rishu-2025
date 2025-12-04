@@ -1,14 +1,15 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo } from "react";
 import "./CSS/Project_page.css";
 
 // --- Image Imports ---
+// Ensure these paths match your folder structure exactly
 import chess from "./Assets/Images/projects/chess.png";
 import calculator from "./Assets/Images/projects/calculator.png";
 import password_generator from "./Assets/Images/projects/password_generator.png";
 import pre_portfolio from "./Assets/Images/projects/pre_portfolio.png";
 import toDo_list from "./Assets/Images/projects/toDo_list.png";
 
-// (Note: Unused skill logos are preserved here in case you need them later)
+// Unused imports kept as per your original file
 import HTML_logo from "./Assets/Images/skills/html_logo.png";
 import CSS_logo from "./Assets/Images/skills/css_logo.png";
 import JavaScript_logo from "./Assets/Images/skills/javascript_logo.png";
@@ -16,7 +17,6 @@ import React_logo from "./Assets/Images/skills/react_logo.png";
 
 // --- 1. RANDOM DOTS COMPONENT (The Animation Layer) ---
 const RandomDots = ({ isRevealed, origin, onClose }) => {
-  // Optimization: Generate dots only once, not on every render
   const dots = useMemo(() => {
     return Array.from({ length: 600 }, (_, i) => ({
       id: i,
@@ -29,30 +29,20 @@ const RandomDots = ({ isRevealed, origin, onClose }) => {
     <div
       className="projectBackgroung_img"
       style={{
-        // Positioning: 'fixed' takes it out of the flow to cover the screen
         position: "fixed",
         top: 0,
         left: 0,
         width: "100vw",
         height: "100vh",
-        zIndex: 100, // Sits on top of everything
+        zIndex: 100,
         overflow: "hidden",
-        backgroundColor: "black", // Fallback color
+        backgroundColor: "black",
         background:
           "radial-gradient(circle at 70% 70%, hsl(0, 0%, 12%), hsl(0, 0%, 8%), hsl(0, 0%, 4%), hsl(0, 0%, 0%))",
-
-        // THE ANIMATION MAGIC:
-        // We create a viewing circle. 
-        // If hidden: Radius is 0px (invisible).
-        // If revealed: Radius is 150% (covers the whole screen).
-        // The center of the circle is set to the button click coordinates (origin.x, origin.y).
         clipPath: isRevealed
           ? `circle(150% at ${origin.x}px ${origin.y}px)`
           : `circle(0px at ${origin.x}px ${origin.y}px)`,
-
         transition: "clip-path 1.2s ease-in-out",
-
-        // Ensure clicks pass through when hidden, but are captured when revealed
         pointerEvents: isRevealed ? "auto" : "none",
       }}
     >
@@ -67,12 +57,11 @@ const RandomDots = ({ isRevealed, origin, onClose }) => {
             height: "2px",
             borderRadius: "50%",
             backgroundColor: "white",
-            boxShadow: "0 0 2px white", // Adds a tiny glow
+            boxShadow: "0 0 2px white",
           }}
         />
       ))}
 
-      {/* Optional: A way to close the overlay */}
       {isRevealed && (
         <button
           onClick={onClose}
@@ -85,7 +74,8 @@ const RandomDots = ({ isRevealed, origin, onClose }) => {
             color: "white",
             padding: "10px 20px",
             cursor: "pointer",
-            borderRadius: "5px"
+            borderRadius: "5px",
+            zIndex: 101, // Ensure button is clickable above the dots
           }}
         >
           Close X
@@ -96,20 +86,24 @@ const RandomDots = ({ isRevealed, origin, onClose }) => {
 };
 
 // --- 2. PROJECT CARD COMPONENT ---
-// Renamed to PascalCase (ProjectCard) for React standards
-function ProjectCard({cardref, cardIndex, image, projectName = "Untitled", skillsRequired = ["HTML", "CSS", "JavaScript"] }) {
+// Updated to accept 'isRevealed' prop
+function ProjectCard({ cardIndex, image, projectName = "Untitled", skillsRequired = ["HTML", "CSS", "JavaScript"], isRevealed }) {
   return (
     <div
       className="Project_card"
       style={{
-        // Using cardIndex (formerly Nth_card) for stacking logic
+        // 1. Position logic
         top: `${cardIndex * 8}px`,
-        // NOTE: Ensure your CSS .Project_card has "transform: translateX(-50%)" 
-        // for this left positioning to center correctly.
-        left: `${cardIndex + 50}%`,
-        zIndex: cardIndex,
+        left: `${cardIndex/2 + 50}%`,
+        
+        // 2. Modern React Logic:
+        // Instead of using refs to change zIndex, we calculate it here.
+        // If revealed, add 150 to the index. If not, use standard index.
+        zIndex: isRevealed ? cardIndex + 150 : cardIndex,
+        
+        // Optional: Add transition for smooth changes if you change other properties
+        transition: "all 0.5s ease" 
       }}
-      ref={cardref}
     >
       <h2 className="projectName">{projectName}</h2>
       <img src={image} alt={projectName} className="project_img" />
@@ -133,59 +127,42 @@ const projects = [
   { id: 5, image: chess, projectName: "Chess" },
 ];
 
-function handleClick(cardref) {
-  if (cardref.current) {
-    // Get current z-index (default to 0 if not set)
-    const currentZ = parseInt(
-      window.getComputedStyle(cardref.current).zIndex || "0",
-      10
-    );
-
-    // Increment by 150
-    cardref.current.style.zIndex = currentZ + 150;
-  }
-}
-
 // --- 3. MAIN PAGE COMPONENT ---
 function ProjectPage() {
-  // State to track if the background is expanded
-  const [isRevealed, setIsRevealed] = useState(false);
-  // State to track where the mouse clicked (X and Y coordinates)
+  const [isRevealed, setIsRevealed] = useState(trueq);
   const [clickPos, setClickPos] = useState({ x: 0, y: 0 });
 
-  // Function called when "See ALL" is clicked
   const handleReveal = (e) => {
-    // 1. Get the mouse coordinates relative to the viewport
+    // 1. Get the mouse coordinates
     const x = e.clientX;
     const y = e.clientY;
-    const cardref = useRef(null);
 
-    handleClick(cardref);
-
-    // 2. Save coordinates and trigger animation
+    // 2. Simply update state. React handles the rest.
     setClickPos({ x, y });
     setIsRevealed(true);
   };
 
   const handleClose = () => {
+
     setIsRevealed(false);
   };
 
   return (
     <section className="project_section">
-      {/* Fixed HTML: Changed <p> to <span> inside <h2> */}
-      <h2 className="project_title">
-        Featured <span className="project_text">PROJECTS</span>
+      <h2 className=" project_title">
+        Featured <span className="title">PROJECTS</span>
       </h2>
 
       <div className="project_space">
         {projects.map((project, index) => (
           <ProjectCard
             key={project.id || index}
-            cardIndex={index} // Renamed prop for clarity
+            cardIndex={index}
             image={project.image}
             projectName={project.projectName}
             skillsRequired={project.skillsRequired}
+            // Pass the state down to the card
+            isRevealed={isRevealed}
           />
         ))}
       </div>
@@ -194,7 +171,6 @@ function ProjectPage() {
         See ALL <span className="arrow_icon">→</span>
       </button>
 
-      {/* Render the dots component here. It is always in the DOM, just hidden/clipped. */}
       <RandomDots
         isRevealed={isRevealed}
         origin={clickPos}
