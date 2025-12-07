@@ -4,7 +4,7 @@
   padding: 22px 40px;
   width: 80%;
   max-width: 900px;
-  z-index: 100;
+  z-index: 1;
 
   display: flex;
   align-self: center;

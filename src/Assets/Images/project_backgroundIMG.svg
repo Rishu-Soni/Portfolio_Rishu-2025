@@ -1,0 +1,18 @@
+<svg width="100%" height="100%" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Pattern Definition for the Grid Cells -->
+    <!-- Width and Height are set to 40 to ensure perfect fit for 1920x1080 (16:9) -->
+    <!-- 1920 / 40 = 48 columns -->
+    <!-- 1080 / 40 = 27 rows -->
+    <pattern id="smallGrid" width="320" height="320" patternUnits="userSpaceOnUse">
+      <!-- Path draws the top and left border of each cell -->
+      <path d="M 320 0 L 0 0 0 320" fill="none" stroke="hsl(0, 0%, 64%)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="none" />
+
+  <!-- Grid Overlay -->
+  <rect width="100%" height="100%" fill="url(#smallGrid)"/>
+</svg>
