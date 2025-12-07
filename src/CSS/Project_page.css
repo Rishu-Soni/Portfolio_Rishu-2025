@@ -1,94 +1,57 @@
+/* --- 1. Main Layout --- */
 .project_section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Center vertically */
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  /* Prevents scrollbars during 3D rotation */
-  /* background-color: var(--theme_backgroundColor_Deep); */
-  /* Fallback */
+  /* Perspective is CRITICAL for 3D depth */
+  perspective: 1200px; 
 }
 
-.project_title {
-  position: absolute;
-  top: 5%;
-  /* z-index: 10; */
-  padding: 8px 16px;
-  color: var(--Hero_Color1);
-  font-weight: 900;
-  font-size: 1.7rem;
-  display: flex;
-  align-items: center;
-  background-color: var(--theme_backgroundColor_Deep);
-  box-shadow: inset 4px 4px 12px var(--theme_Dark_shadow_color), inset -2px -2px 12px var(--theme_Light_shadow_color);
-  border-radius: 20px;
-  border: 4px solid var(--theme_backgroundColor_Front);
-}
-
-/* CONTAINER:
-   This must be the exact size of a SINGLE card.
-   The perspective is applied here.
-*/
+/* --- 2. The 3D Container (The Turntable) --- */
 .project_space {
   position: relative;
-  width: 260px;
-  /* Matches Card Width */
+  width: 255px; 
   height: 340px;
-  /* Matches Card Height */
-  transform-style: preserve-3d;
-  transform: perspective(1000px);
-  /* animation: autoRun 23s linear infinite; */
-  /* Slower is usually smoother */
-  z-index: 3;
+  transform-style: preserve-3d; 
+  transition: transform 1s ease-in-out; 
+  /* Tilted slightly so we see the circle better */
+  transform: rotateX(-10deg) rotateY(0deg); 
 }
 
-/* Pause animation on hover for better UX */
+/* The spinning animation - only active in final phase */
+.project_space.animate-spin {
+  animation: autoRun 25s linear infinite;
+}
+
+/* Pause on hover so user can click links */
 .project_space:hover {
   animation-play-state: paused;
 }
 
 @keyframes autoRun {
-  from {
-    transform: perspective(1000px) rotateX(-9deg) rotateY(0deg);
-  }
-
-  to {
-    transform: perspective(1000px) rotateX(-9deg) rotateY(360deg);
-  }
+  from { transform: rotateX(-10deg) rotateY(0deg); }
+  to   { transform: rotateX(-10deg) rotateY(360deg); }
 }
 
-
-/* Background Elements */
-.project_back_div {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  background: radial-gradient(circle farthest-side at 70% 60%,
-      hsla(268, 100%, 10%),
-      hsla(268, 100%, 5%),
-      hsla(0, 0%, 0%));
-}
-
-/* CARD STYLING:
-   Removed absolute sizing here because it fills the parent (.project_space).
-   Removed the conflicting 'transform' property (handled in JSX).
-*/
+/* --- 3. The Individual Cards --- */
 .Project_card {
   position: absolute;
+  inset: 0; 
+  width: 100%;
+  height: 100%;
+  
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   padding: 12px 16px;
 
-  /* Visuals */
+  /* Card Visuals */
   background: radial-gradient(circle at 100% 100%,
       var(--Hero_Color2),
       var(--theme_backgroundColor_Front),
@@ -96,66 +59,98 @@
       var(--theme_backgroundColor_Deep),
       var(--theme_backgroundColor_Deepest));
   box-shadow: -1px -1px 8px var(--theme_Light_shadow_color),
-    2px 2px 6px var(--Hero_Color1);
+              2px 2px 6px var(--Hero_Color1);
   border-radius: 16px;
-  border: 6px solid var(--theme_backgroundColor_Front);
+  border: 4px solid var(--theme_backgroundColor_Front);
+  
+  /* Animation Settings */
+  transition: transform 1.8s ease-in-out;
   backface-visibility: visible;
 }
 
+/* --- 4. Content Styling --- */
 .projectName {
   font-size: 1.5rem;
-  /* Adjusted for card size */
   font-weight: 900;
   color: var(--theme_ParaText_color);
   text-shadow: 2px 2px 4px var(--Hero_Color2), -2px -2px 4px var(--Hero_Color1);
   text-align: center;
+  margin: 0;
 }
 
 .project_img {
   width: 90%;
   height: 140px;
   object-fit: contain;
-  /* or cover, depending on image preference */
   background: hsla(0, 0%, 100%, 0.05);
-  /* Subtle backing for transparent PNGs */
   border-radius: 8px;
 }
 
 .skillTag_container {
   width: 100%;
-  list-style: none;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 6px;
   padding: 0;
+  list-style: none;
 }
 
 .skillTag {
   font-size: 0.8rem;
   padding: 4px 10px;
-  background: linear-gradient(90deg,
-      var(--theme_backgroundColor_Deep),
-      var(--Hero_Color1));
+  background: linear-gradient(90deg, var(--theme_backgroundColor_Deep), var(--Hero_Color1));
   color: var(--theme_HeadingText_color);
   border-radius: 20px;
   border: 1px solid var(--theme_Light_shadow_color);
-  box-shadow: inset -1px -1px 4px var(--theme_Light_shadow_color),
-    inset 2px 2px 3px var(--Hero_Color2);
 }
 
 .project_link_container {
   display: flex;
+  justify-content: space-between;
   width: 100%;
-  height: 20px;
-  margin: 2px 4px;
+  margin-top: 5px;
+  padding: 0 10px;
   list-style: none;
 }
 
 .project_link {
-  height: 100%;
-  width: 50%;
-  padding: 4px;
+  font-size: 0.9rem;
   color: var(--theme_HeadingText_color);
+  cursor: pointer;
+  text-decoration: underline;
+}
 
+/* --- 5. UI Elements --- */
+.project_title {
+  position: absolute;
+  top: 5%;
+  z-index: 10;
+  padding: 8px 16px;
+  color: var(--Hero_Color1);
+  font-weight: 900;
+  font-size: 1.7rem;
+  background-color: var(--theme_backgroundColor_Deep);
+  border-radius: 20px;
+  border: 4px solid var(--theme_backgroundColor_Front);
+}
+
+.project_button {
+  position: absolute;
+  bottom: 10%;
+  padding: 10px 30px;
+  background-color: var(--Hero_Color1);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 20;
+  transition: opacity 0.5s ease;
+}
+
+.project_button.hidden {
+  opacity: 0;
+  pointer-events: none;
 }

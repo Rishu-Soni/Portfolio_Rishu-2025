@@ -8,10 +8,7 @@ import password_generator from "./Assets/Images/projects/password_generator.png"
 import pre_portfolio from "./Assets/Images/projects/pre_portfolio.png";
 import toDo_list from "./Assets/Images/projects/toDo_list.png";
 
-import project_backIMG from "./Assets/Images/grid_white.svg"
-
-
-// --- Project ARRAY ---
+// --- Data ---
 const projects = [
   { id: 1, image: toDo_list, projectName: "ToDo list" },
   { id: 2, image: pre_portfolio, projectName: "Portfolio", skillsRequired: ["HTML", "CSS", "React"] },
@@ -20,128 +17,135 @@ const projects = [
   { id: 5, image: chess, projectName: "Chess" }
 ];
 
-function ProjectCard({ cardIndex, image, count, projectName = "Untitled", skillsRequired = ["HTML", "CSS", "JS"] }) {
+// --- Card Component ---
+function ProjectCard({ project, index, totalCount, phase }) {
 
-  const rotateY = cardIndex * (360 / count);
-
+  const rotateY = index * (360 / totalCount);
   const radius = 400;
-  //  const [radius, setradius] = useState(400);
 
-  const cardsRef = useRef();
+  // Spread for the 'files' view
+  const stackX = (index - 2) * 4;
+  const stackY = (index - 2) * 4;
 
-  // useEffect(() =>{
-  //   const project_animation
-  // }, [])
-
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (!divRef.current) return;
-
-  //     const scrollY = window.scrollY;
-  //     const windowHeight = window.innerHeight;
-
-  //     // Calculate start and end points in pixels
-  //     const startTrigger = windowHeight * 0.3; // 50vh
-  //     const endTrigger = windowHeight * 0.6;   // 80vh
-  //     const distance = endTrigger - startTrigger;
-
-  //     let scale = 1;
-
-  //     if (scrollY < startTrigger) {
-  //       // Before 50vh: Keep original size
-  //       scale = 1;
-  //     } else if (scrollY > endTrigger) {
-  //       // After 80vh: Stick to 20% size
-  //       scale = 0.2;
-  //     } else {
-  //       // Between 50vh and 80vh: Calculate percentage
-  //       const progress = (scrollY - startTrigger) / distance;
-
-  //       // Interpolate: We want to go FROM 1 TO 0.2
-  //       // Formula: startValue - (progress * (startValue - endValue))
-  //       scale = 1 - (progress * 0.8);
-  //     }
-
-  //     // Apply the transformation directly to the DOM node
-  //     divRef.current.style.transform = `scale(${scale})`;
-  //   };
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   // Initial call to set state on load
-  //   handleScroll();
-
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, []);
+  const getTransform = () => {
+    switch (phase) {
+      case 'files':
+        return `translate(${stackX}px, ${stackY}px)`;
+      
+      case 'overlap':
+        return `translate(0px, 0px)`;
+      
+      case 'carousel':
+      case 'spinning':
+        return `rotateY(${rotateY}deg) translateZ(${radius}px)`;
+      
+      default:
+        return `translate(0px, 0px)`;
+    }
+  };
 
   return (
-    <div
-      className="Project_card"
-      // We only change the transform here. The size is handled by CSS.
-      style={{
-        top: `${cardIndex / 20 * 50}%`,
-        left: `${cardIndex / 20 * 50}%`,
-
-        width: '255px',
-        height: '340px',
+    <div 
+      className="Project_card" 
+      style={{ 
+        transform: getTransform(),
+        zIndex: phase === 'files' ? index : 'auto' 
       }}
-      // style={{
-      //   transform: `rotateY(${rotateY}deg) translateZ(${radius}px)`,
-      //   inset: "0",
-      //   width: "auto",
-      //   height: "auto"
-      // }}
-
-
-      ref={cardsRef}
     >
-      <h2 className="projectName">{projectName}</h2>
-      <img src={image} alt={projectName} className="project_img" />
+      <h2 className="projectName">{project.projectName}</h2>
+      <img src={project.image} alt={project.projectName} className="project_img" />
+      
       <ul className="skillTag_container">
-        {skillsRequired.map((skill, index) => (
-          <li className="skillTag" key={index}>
-            {skill}
-          </li>
+        {(project.skillsRequired || ["HTML", "CSS", "JS"]).map((skill, i) => (
+          <li className="skillTag" key={i}>{skill}</li>
         ))}
       </ul>
-      <ul className="project_link_container" >
-        <li className="project_link" >Github</li>
-        <li className="project_link" >Live preview</li>
+      
+      <ul className="project_link_container">
+        <li className="project_link">Github</li>
+        <li className="project_link">Live preview</li>
       </ul>
     </div>
   );
 }
 
+// --- Main Component ---
 function ProjectPage() {
+  const [phase, setPhase] = useState('files');
+  
+  // Reference to the section so we can track when it leaves the screen
+  const sectionRef = useRef(null);
+
+  // TRIGGER: User clicks "See All"
+  const handleSeeAll = () => {
+    if (phase === 'files') {
+      setPhase('overlap');
+    }
+  };
+
+  // AUTOMATION 1: Timing sequence for animation
+  useEffect(() => {
+    let timer;
+    if (phase === 'overlap') {
+      timer = setTimeout(() => setPhase('carousel'), 1700);
+    } 
+    else if (phase === 'carousel') {
+      timer = setTimeout(() => setPhase('spinning'), 1500);
+    }
+    return () => clearTimeout(timer);
+  }, [phase]);
+
+  // AUTOMATION 2: Reset to 'files' when scrolled out of view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // If the section is NOT intersecting (meaning it left the view)
+        // We reset the phase back to 'files'
+        if (!entry.isIntersecting) {
+          setPhase('files');
+        }
+      },
+      { 
+        // 0.2 means: Trigger this when less than 20% of the section is visible.
+        // This prevents it from resetting while you are still looking at part of it.
+        threshold: 0.5
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.disconnect();
+    };
+  }, []);
 
   return (
-    <section className="project_section">
-
-
-
-      {/* <aside className="project_back_div" >
-        <img src={project_backIMG} className="project_back_img" />
-      </aside> */}
-
+    <section className="project_section" ref={sectionRef}>
       <h2 className="project_title">
         Featured <span className="title" style={{ marginLeft: '8px' }}>PROJECTS</span>
       </h2>
-
-      {/* The rotating container */}
-      <div className="project_space" style={{
-        // animation: "autoRun 23s linear infinite",
-      }} >
+      
+      <div className={`project_space ${phase === 'spinning' ? 'animate-spin' : ''}`}>
         {projects.map((project, index) => (
           <ProjectCard
             key={project.id || index}
-            cardIndex={index}
-            count={projects.length} // Pass total count for math
-            image={project.image}
-            projectName={project.projectName}
-            skillsRequired={project.skillsRequired}
+            project={project}
+            index={index}
+            totalCount={projects.length}
+            phase={phase}
           />
         ))}
       </div>
+
+      <button 
+        className={`project_button ${phase !== 'files' ? 'hidden' : ''}`} 
+        onClick={handleSeeAll}
+      >
+        See All
+      </button>
+
     </section>
   );
 }
