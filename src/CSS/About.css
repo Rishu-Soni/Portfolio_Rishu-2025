@@ -33,9 +33,9 @@
   margin: 0 2% 0 1.5%;
   padding: 2% 5%;
   color: var(--theme_ParaText_color);
-  background-color: hsla(0, 0%, 28%, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: hsla(0, 0%, 28%, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 
   border-radius: 20px;
 }
@@ -46,10 +46,7 @@
   font-weight: 700;
   background: linear-gradient(
     90deg,
-    var(--Hero_Color2),
-    rgb(255, 161, 67),
-    hsl(0, 100%, 78%),
-    rgb(255, 161, 67),
+    var(--Hero_Color1),
     var(--Hero_Color2)
   );
   -webkit-background-clip: text;
@@ -67,10 +64,7 @@
   background: linear-gradient(
     90deg,
     var(--Hero_Color2),
-    rgb(255, 161, 67),
-    hsl(66, 100%, 68%),
-    hsl(0, 100%, 78%),
-    var(--Hero_Color2)
+    var(--Hero_Color1)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

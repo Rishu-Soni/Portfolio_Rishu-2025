@@ -5,22 +5,24 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  height: 115vh;
   position: relative;
   overflow: hidden;
   /* Perspective is CRITICAL for 3D depth */
-  perspective: 1200px; 
+  perspective: 1200px;
+  /* margin: 0 0 15vh 0; */
 }
 
 /* --- 2. The 3D Container (The Turntable) --- */
 .project_space {
   position: relative;
-  width: 255px; 
+  top: -8%;
+  width: 255px;
   height: 340px;
-  transform-style: preserve-3d; 
-  transition: transform 1s ease-in-out; 
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
   /* Tilted slightly so we see the circle better */
-  transform: rotateX(-10deg) rotateY(0deg); 
+  transform: rotateX(-10deg) rotateY(0deg);
 }
 
 /* The spinning animation - only active in final phase */
@@ -34,17 +36,22 @@
 }
 
 @keyframes autoRun {
-  from { transform: rotateX(-10deg) rotateY(0deg); }
-  to   { transform: rotateX(-10deg) rotateY(360deg); }
+  from {
+    transform: rotateX(-10deg) rotateY(0deg);
+  }
+
+  to {
+    transform: rotateX(-10deg) rotateY(360deg);
+  }
 }
 
 /* --- 3. The Individual Cards --- */
 .Project_card {
   position: absolute;
-  inset: 0; 
+  inset: 0;
   width: 100%;
   height: 100%;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -59,10 +66,10 @@
       var(--theme_backgroundColor_Deep),
       var(--theme_backgroundColor_Deepest));
   box-shadow: -1px -1px 8px var(--theme_Light_shadow_color),
-              2px 2px 6px var(--Hero_Color1);
+    2px 2px 6px var(--Hero_Color1);
   border-radius: 16px;
   border: 4px solid var(--theme_backgroundColor_Front);
-  
+
   /* Animation Settings */
   transition: transform 1.8s ease-in-out;
   backface-visibility: visible;
@@ -110,34 +117,58 @@
   justify-content: space-between;
   width: 100%;
   margin-top: 5px;
-  padding: 0 10px;
   list-style: none;
+
 }
 
 .project_link {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
   font-size: 0.9rem;
   color: var(--theme_HeadingText_color);
   cursor: pointer;
-  text-decoration: underline;
+  transition: all 0.5s ease-in-out;
+  text-decoration: none;
+}
+
+.githubLink:hover {
+  transform: translateY(-4px), scale(1.05);
+  background-color: var(--Hero_Color2);
+  color: var(--theme_HeadingText_color_opp);
+}
+
+.liveLink:hover {
+  transform: translateY(-4px), scale(1.05);
+  background-color: var(--Hero_Color1);
+  color: var(--theme_HeadingText_color_opp);
+
 }
 
 /* --- 5. UI Elements --- */
 .project_title {
   position: absolute;
-  top: 5%;
+  top: 0%;
   z-index: 10;
-  padding: 8px 16px;
+  padding: 12px 20px;
+  text-align: center;
+  width: 500px;
   color: var(--Hero_Color1);
   font-weight: 900;
   font-size: 1.7rem;
   background-color: var(--theme_backgroundColor_Deep);
-  border-radius: 20px;
-  border: 4px solid var(--theme_backgroundColor_Front);
+  border-radius: 40px 100px 40px 100px;
+  border: 4px solid var(--theme_backgroundColor_Deepest);
+  box-shadow: inset -3px -3px 10px var(--theme_Dark_shadow_color),
+    inset 4px 4px 10px var(--theme_Light_shadow_color);
 }
 
 .project_button {
   position: absolute;
-  bottom: 10%;
+  top: 82%;
+  /* left: 80%; */
   padding: 10px 30px;
   background-color: var(--Hero_Color1);
   color: white;
