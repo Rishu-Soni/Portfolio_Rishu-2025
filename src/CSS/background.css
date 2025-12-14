@@ -10,7 +10,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background: var(--theme_backgroundColor_Deepest);
-  /* filter: hue-rotate(300deg); */
 }
 
 
@@ -31,7 +30,6 @@
   margin: 20vh 0;
   gap: 1vh;
   line-height: 80px;
-  transform: scale(20%);
 }
 .MyName {
   color: var(--theme_HeadingText_color);

@@ -58,7 +58,6 @@ function ProjectCard({ project, index, totalCount, phase }) {
   const rotateY = index * (360 / totalCount);
   const radius = 400;
 
-  // Spread for the 'files' view
   const stackX = (index - 2) * 4;
   const stackY = (index - 2) * 4;
 
@@ -97,8 +96,8 @@ function ProjectCard({ project, index, totalCount, phase }) {
       </ul>
 
       <ul className="project_link_container">
-        <a href={( project.github_link || "https://github.com/Rishu-Soni") } target="-blank"  className="project_link githubLink"> <li >Github</li></a>
-        <a href={ project.live_link} target="-blank" className="project_link liveLink" ><li >Live preview</li></a>
+        <a href={(project.github_link || "https://github.com/Rishu-Soni")} target="-blank" className="project_link githubLink"> <li >Github</li></a>
+        <a href={project.live_link} target="-blank" className="project_link liveLink" ><li >Live preview</li></a>
       </ul>
     </div>
   );
@@ -108,17 +107,29 @@ function ProjectCard({ project, index, totalCount, phase }) {
 function ProjectPage() {
   const [phase, setPhase] = useState('files');
 
-  // Reference to the section so we can track when it leaves the screen
-  const sectionRef = useRef(null);
+  const ProjectSpaceRef = useRef(null);
+  const containerRef = useRef(null);
 
-  // TRIGGER: User clicks "See All"
   const handleSeeAll = () => {
     if (phase === 'files') {
       setPhase('overlap');
     }
   };
 
-  // AUTOMATION 1: Timing sequence for animation
+
+  useEffect(() => {
+    if (phase === 'files') {
+      // containerRef.current.innerHTML = `See All`;
+    }
+    if (phase !== 'files') {
+      containerRef.current.innerHTML = `
+      
+
+      `;
+    }
+  }, [phase]);
+
+
   useEffect(() => {
     let timer;
     if (phase === 'overlap') {
@@ -130,39 +141,34 @@ function ProjectPage() {
     return () => clearTimeout(timer);
   }, [phase]);
 
-  // AUTOMATION 2: Reset to 'files' when scrolled out of view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // If the section is NOT intersecting (meaning it left the view)
-        // We reset the phase back to 'files'
         if (!entry.isIntersecting) {
           setPhase('files');
         }
       },
       {
-        // 0.2 means: Trigger this when less than 20% of the section is visible.
-        // This prevents it from resetting while you are still looking at part of it.
         threshold: 0.55
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (ProjectSpaceRef.current) {
+      observer.observe(ProjectSpaceRef.current);
     }
 
     return () => {
-      if (sectionRef.current) observer.disconnect();
+      if (ProjectSpaceRef.current) observer.disconnect();
     };
   }, []);
 
   return (
-    <section className="project_section" ref={sectionRef}>
+    <section className="project_section" >
       <h2 className="project_title">
-      Featured <span className="title" style={{ marginLeft: '8px' }}>PROJECTS</span>
+        Featured <span className="title" style={{ marginLeft: '8px' }}>PROJECTS</span>
       </h2>
 
-      <div className={`project_space ${phase === 'spinning' ? 'animate-spin' : ''}`}>
+      <div className={`project_space ${phase === 'spinning' ? 'animate-spin' : ''}`} ref={ProjectSpaceRef} >
         {projects.map((project, index) => (
           <ProjectCard
             key={project.id || index}
@@ -174,12 +180,17 @@ function ProjectPage() {
         ))}
       </div>
 
-      <button
+
+      <a
         className={`project_button ${phase !== 'files' ? 'hidden' : ''}`}
         onClick={handleSeeAll}
+        ref={containerRef}
       >
-        See All
-      </button>
+        <button>{"<"}</button>
+        auto
+        <button>{">"}</button>
+      </a>
+
 
     </section>
   );

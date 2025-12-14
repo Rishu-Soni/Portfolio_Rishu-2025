@@ -168,7 +168,6 @@
 .project_button {
   position: absolute;
   top: 82%;
-  /* left: 80%; */
   padding: 10px 30px;
   background-color: var(--Hero_Color1);
   color: white;
@@ -181,7 +180,10 @@
   transition: opacity 0.5s ease;
 }
 
-.project_button.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
+/* .project_button.hidden {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+} */
