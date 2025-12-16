@@ -180,10 +180,43 @@
   transition: opacity 0.5s ease;
 }
 
-/* .project_button.hidden {
-  width: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 
+/* 
+.project_button.visit {
+  width: 160px;
+  height: 84px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: inset -2px -2px 4px var(--theme_Light_shadow_color), inset 4px 4px 4px var(--theme_Dark_shadow_color);
+  background: radial-gradient(closest-corner at 50% 50%, var(--Hero_Color2), var(--Hero_Color1));
+  transition: all 0.8s ease;
+  filter: brightness(90%);
+}
+
+.project_button.visit:hover {
+  filter: brightness(100%);
+  background: hsl(0, 0%, 12%);
+}
+
+.project_button:visited.ProjectControlArrowBtn {
+  box-shadow: inset -3px -3px 2px var(--theme_Dark_shadow_color), inset 3px 3px 2px var(--theme_Light_shadow_color);
+  width: 20%;
+  height: 80%;
+  margin: 0 20px;
+  background-color: var(--theme_backgroundColor_Front);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.project_button:visited.ProjectControlArrowBtn:hover {
+  box-shadow: -2px -2px 8px var(--Hero_Color2), 2px 2px 8px var(--Hero_Color1), inset -3px -3px 2px var(--theme_Dark_shadow_color), inset 3px 3px 2px var(--theme_Light_shadow_color);
+  transform: scale(1.02) translateY(-2px);
 } */

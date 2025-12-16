@@ -108,7 +108,6 @@ function ProjectPage() {
   const [phase, setPhase] = useState('files');
 
   const ProjectSpaceRef = useRef(null);
-  const containerRef = useRef(null);
 
   const handleSeeAll = () => {
     if (phase === 'files') {
@@ -116,18 +115,27 @@ function ProjectPage() {
     }
   };
 
+  // const containerRef = useRef(null);
 
-  useEffect(() => {
-    if (phase === 'files') {
-      // containerRef.current.innerHTML = `See All`;
-    }
-    if (phase !== 'files') {
-      containerRef.current.innerHTML = `
-      
 
-      `;
-    }
-  }, [phase]);
+
+  // useEffect(() => {
+  //   if (phase === 'files') {
+  //     containerRef.current.innerHTML = ` < button
+  //     className = {"project_button ${phase !== 'files' ? 'hidden' : ''} "
+  //   }
+  //   onClick = { handleSeeAll } className = "ProjectControlArrowBtn" > See All</button > `;
+  //   }
+  //   if (phase !== 'files') {
+  //     containerRef.current.innerHTML = `
+
+  //     <button className="ProjectControlArrowBtn" >{"<"}</button>
+  //       auto
+  //       <button className="ProjectControlArrowBtn" >{">"}</button>
+
+  //     `;
+  //   }
+  // }, [phase]);
 
 
   useEffect(() => {
@@ -182,15 +190,10 @@ function ProjectPage() {
 
 
       <a
-        className={`project_button ${phase !== 'files' ? 'hidden' : ''}`}
+        className={`project_button ${phase !== 'files' ? 'hidden' : ''} `}
         onClick={handleSeeAll}
-        ref={containerRef}
-      >
-        <button>{"<"}</button>
-        auto
-        <button>{">"}</button>
+      >See All
       </a>
-
 
     </section>
   );

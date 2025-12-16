@@ -33,9 +33,9 @@
   margin: 0 2% 0 1.5%;
   padding: 2% 5%;
   color: var(--theme_ParaText_color);
-  background-color: hsla(0, 0%, 28%, 0.4);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  background-color: hsla(0, 0%, 28%, 0.3);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 
   border-radius: 20px;
 }
