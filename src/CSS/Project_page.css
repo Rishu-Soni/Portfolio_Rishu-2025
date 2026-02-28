@@ -5,12 +5,14 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 115vh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
   /* Perspective is CRITICAL for 3D depth */
   perspective: 1200px;
   /* margin: 0 0 15vh 0; */
+  scroll-snap-align: start;
+
 }
 
 /* --- 2. The 3D Container (The Turntable) --- */

@@ -14,35 +14,27 @@ function Background() {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // Calculate start and end points in pixels
-      const startTrigger = windowHeight * 0.3; // 50vh
-      const endTrigger = windowHeight * 0.6;   // 80vh
+      const startTrigger = windowHeight * 0.3; 
+      const endTrigger = windowHeight * 0.6;   
       const distance = endTrigger - startTrigger;
 
       let scale = 1;
 
       if (scrollY < startTrigger) {
-        // Before 50vh: Keep original size
         scale = 1;
       } else if (scrollY > endTrigger) {
-        // After 80vh: Stick to 20% size
-        scale = 0.2;
+        scale = 0;
       } else {
-        // Between 50vh and 80vh: Calculate percentage
         const progress = (scrollY - startTrigger) / distance;
 
-        // Interpolate: We want to go FROM 1 TO 0.2
-        // Formula: startValue - (progress * (startValue - endValue))
-        scale = 1 - (progress * 0.8);
+        scale = 1 - (progress * 1);
       }
 
-      // Apply the transformation directly to the DOM node
       divRef.current.style.transform = `scale(${scale})`;
     };
 
     window.addEventListener('scroll', handleScroll);
 
-    // Initial call to set state on load
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);

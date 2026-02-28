@@ -5,10 +5,27 @@
   flex-direction: row;
   position: static;
 
-  margin: calc(100vh - 40px) 0 10vh 0;
+  margin: 0 5% 10vh 5%;
+  /* padding: 0 50px; */
   width: 90vw;
-  max-width: 1600px;
+  height: 100vh;
+  /* max-width: 1600px; */
+
+  scroll-snap-align: start;
 }
+
+/* 
+.aboutSection::before {
+  content: "";
+  position: er;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../Assets/Images/me.png") no-repeat center center;
+  background-size: cover;
+  z-index: -1; optional: place behind content
+ }  */
 
 .PhotoDiv {
   display: flex;
@@ -17,6 +34,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .My_Photo {
   overflow: hidden;
   background-repeat: no-repeat;
@@ -29,7 +47,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 90%;
+  width: 80%;
   margin: 0 2% 0 1.5%;
   padding: 2% 5%;
   color: var(--theme_ParaText_color);
@@ -44,16 +62,15 @@
   display: inline-block;
   font-size: 3.5rem;
   font-weight: 700;
-  background: linear-gradient(
-    90deg,
-    var(--Hero_Color1),
-    var(--Hero_Color2)
-  );
+  background: linear-gradient(90deg,
+      var(--Hero_Color1),
+      var(--Hero_Color2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0 auto 15px;
 }
+
 .subtitle {
   width: 390px;
   display: inline-block;
@@ -61,11 +78,9 @@
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--Hero_Color1);
-  background: linear-gradient(
-    90deg,
-    var(--Hero_Color2),
-    var(--Hero_Color1)
-  );
+  background: linear-gradient(90deg,
+      var(--Hero_Color2),
+      var(--Hero_Color1));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -92,6 +107,7 @@
   font-weight: 300;
   font-size: 1.2rem;
 }
+
 .skill_heading {
   width: 150px;
   display: inline-block;
@@ -112,33 +128,32 @@
   position: relative;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   /* Fade effect on sides */
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
 }
+
 .skills_track {
   display: flex;
-  gap: 2rem; /* The "smooth white space" */
+  gap: 2rem;
+  /* The "smooth white space" */
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(
-    -50%
-  ); /* Only centering vertically here, X is handled by JS */
+  transform: translateY(-50%);
+  /* Only centering vertically here, X is handled by JS */
   width: max-content;
-  cursor: grab; /* Hint to browser to use GPU */
+  cursor: grab;
+  /* Hint to browser to use GPU */
 }
+
 .skills_track:active {
   cursor: grabbing;
 }
@@ -164,6 +179,7 @@
 
   will-change: transform;
 }
+
 .skill_logo {
   width: auto;
   height: 70%;
@@ -173,6 +189,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-100%);
   }

@@ -6,6 +6,7 @@ import HandPng from "./hand.jsx";
 import About from "./About.jsx";
 import ProjectPage from "./Project_page.jsx";
 import ContactPage from "./contact.jsx";
+import ScrollIndicator from "./scrollIndicator.jsx";
 
 
 import gitLogo from "./Assets/Images/contact_logos/github_image.png"
@@ -15,13 +16,18 @@ import teleLogo from "./Assets/Images/contact_logos/Telegram_logo.png"
 import twitterLogo from "./Assets/Images/contact_logos/twitter_image.png"
 
 createRoot(document.getElementById("root")).render(
+
   <>
     <Background />
     <Nav />
     {/* <HandPng /> */}
+    <div className="hero_spacer"></div>
+    <ScrollIndicator />
     <About />
     <ProjectPage />
     <ContactPage />
+
+
     <footer className="footer">
       <div className="footerSubDiv" >
         <h4 className="footerSubDiv_text" >Got any Idea.? Let's get in touch...!</h4>

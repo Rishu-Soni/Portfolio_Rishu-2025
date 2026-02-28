@@ -46,15 +46,15 @@
 @keyframes shine {
 
   0% {
-    left: -100%;
+    left: -200%;
   }
 
   33% {
-    left: -100%;
+    left: -200%;
   }
 
   100% {
-    left: 100%;
+    left: 110%;
   }
 }
 

@@ -38,7 +38,7 @@ const Contact = () => {
 
         // Formatting the message for Telegram
         const text = `
-    🚀 *New Portfolio Contact*
+    🚀 *New Portfolio Contact from Portfolio_Rishu_latest*
     -----------------------------
     👤 *Name:* ${formData.name}
     📧 *Email:* ${formData.email}
