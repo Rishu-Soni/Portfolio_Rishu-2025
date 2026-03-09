@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import myIMG from "./Assets/Images/me2.png";
+import myIMG from "./Assets/Images/me_Img.png";
 import "./CSS/About.css";
 
 import HTML_logo from "./Assets/Images/skills/html_logo.png";
@@ -166,7 +166,7 @@ function About() {
   return (
     <section className="aboutSection">
       <div className="PhotoDiv">
-        <img src={myIMG} alt="My_Photo" className="My_Photo" />
+        <img src={myIMG} alt="My_Photo" className="My_Photo" style={{ filter: "grayscale(0.6)" }} />
       </div>
       <div className="textDiv">
         <h2 className="title">About ME</h2>

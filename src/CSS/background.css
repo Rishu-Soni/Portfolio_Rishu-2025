@@ -31,25 +31,26 @@
   gap: 1vh;
   line-height: 80px;
 }
+
 .MyName {
   color: var(--theme_HeadingText_color);
   font-size: 5rem;
   font-weight: 900;
   text-shadow: 5px 5px 2px hsl(0, 0%, 15%);
 }
+
 .front_endText {
   display: inline-block;
   font-size: 3rem;
   font-weight: 900;
-  background: linear-gradient(
-    90deg,
-    var(--Hero_Color1),
-    var(--Hero_Color2)
-  );
+  background: linear-gradient(90deg,
+      var(--Hero_Color1),
+      var(--Hero_Color2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 .FullStack_endText {
   position: relative;
   display: inline-block;
@@ -59,6 +60,7 @@
   background-color: var(--theme_backgroundColor_Deepest);
   color: var(--theme_HeadingText_color);
 }
+
 .FullStack_endText::before {
   content: "";
   position: absolute;
@@ -68,16 +70,35 @@
   height: 100%;
   padding: 4px;
   z-index: -90;
-  background: conic-gradient(
-    from var(--angle),
-    transparent,
-    transparent,
-    transparent,
-    transparent,
-    transparent,
-    var(--Hero_Color1),
-    var(--Hero_Color2)
-  );
+  background: conic-gradient(from var(--angle),
+      transparent,
+      transparent,
+      transparent,
+      transparent,
+      transparent,
+      var(--Hero_Color1),
+      var(--Hero_Color2));
   animation: rotate 2s linear infinite;
   border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .intro_text {
+    width: 90dvw;
+    min-width: unset;
+    line-height: 48px;
+    margin: 15dvh 0;
+  }
+
+  .MyName {
+    font-size: 3rem;
+  }
+
+  .front_endText {
+    font-size: 2rem;
+  }
+
+  .FullStack_endText {
+    font-size: 2.5rem;
+  }
 }

@@ -55,8 +55,16 @@ const projects = [
 // --- Card Component ---
 function ProjectCard({ project, index, totalCount, phase }) {
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const rotateY = index * (360 / totalCount);
-  const radius = 400;
+  const radius = windowWidth <= 768 ? 240 : 400;
 
   const stackX = (index - 2) * 4;
   const stackY = (index - 2) * 4;
@@ -96,8 +104,8 @@ function ProjectCard({ project, index, totalCount, phase }) {
       </ul>
 
       <ul className="project_link_container">
-        <a href={(project.github_link || "https://github.com/Rishu-Soni")} target="-blank" className="project_link githubLink"> <li >Github</li></a>
-        <a href={project.live_link} target="-blank" className="project_link liveLink" ><li >Live preview</li></a>
+        <li><a href={(project.github_link || "https://github.com/Rishu-Soni")} target="_blank" rel="noopener noreferrer" aria-label={`GitHub link for ${project.projectName}`} className="project_link githubLink">Github</a></li>
+        <li><a href={project.live_link} target="_blank" rel="noopener noreferrer" aria-label={`Live preview for ${project.projectName}`} className="project_link liveLink">Live preview</a></li>
       </ul>
     </div>
   );

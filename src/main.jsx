@@ -19,13 +19,17 @@ createRoot(document.getElementById("root")).render(
 
   <>
     <Background />
-    <Nav />
+    <header>
+      <Nav />
+    </header>
     {/* <HandPng /> */}
-    <div className="hero_spacer"></div>
-    <ScrollIndicator />
-    <About />
-    <ProjectPage />
-    <ContactPage />
+    <main>
+      <div className="hero_spacer"></div>
+      <ScrollIndicator />
+      <About />
+      <ProjectPage />
+      <ContactPage />
+    </main>
 
 
     <footer className="footer">

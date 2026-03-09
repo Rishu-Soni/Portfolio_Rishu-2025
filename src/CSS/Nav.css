@@ -70,3 +70,22 @@
   list-style: none;
   gap: 24px;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    width: 90%;
+    padding: 8px 16px;
+  }
+
+  .Portfolio_navText {
+    font-size: 1.25rem;
+  }
+
+  .list_container {
+    gap: 16px;
+  }
+
+  .list {
+    font-size: 0.9rem;
+  }
+}

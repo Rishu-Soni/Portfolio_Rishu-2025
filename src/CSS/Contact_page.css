@@ -4,15 +4,16 @@
     justify-self: center;
     align-items: center;
     flex-direction: column;
-    gap: 15px;
-    padding: 0px 20px 44px;
-    width: 80vw;
+    gap: 16px;
+    padding: 0px 24px 48px;
+    width: 80dvw;
     height: max-content;
     background-color: var(--theme_backgroundColor_Deep);
-    border-radius: 20px;
+    border-radius: 24px;
     box-shadow: inset -8px -8px 20px var(--theme_Dark_shadow_color),
         inset 8px 8px 20px var(--theme_Light_shadow_color);
     overflow-x: hidden;
+    box-sizing: border-box;
 
     scroll-snap-align: start;
 }
@@ -27,7 +28,7 @@
     box-shadow: inset -2px -2px 4px var(--theme_Dark_shadow_color), inset 4px 4px 8px var(--theme_Light_shadow_color), 2px 2px 8px var(--theme_Dark_shadow_color);
 }
 
-.contactForm{
+.contactForm {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -81,7 +82,7 @@
     resize: vertical;
     box-sizing: border-box;
     margin: 20px auto;
-    scrollbar-width:none;
+    scrollbar-width: none;
 }
 
 .ContentButton {
@@ -92,4 +93,35 @@
     border-radius: 12px;
     border: 2px solid var(--theme_backgroundColor_Deep);
     box-shadow: inset 4px 4px 6px var(--theme_Light_shadow_color), inset -2px -2px 6px var(--theme_Dark_shadow_color), 4px 4px 12px var(--theme_Dark_shadow_color);
+}
+
+@media (max-width: 768px) {
+    .contactPage {
+        width: 90dvw;
+        padding: 0px 16px 32px;
+    }
+
+    .contactTitle {
+        margin: 8% auto;
+        font-size: 1.5rem;
+    }
+
+    .sub_1_Container {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .Contentlogo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .sub_1Text_Container {
+        width: 100%;
+        height: auto;
+    }
+
+    .mainText_container {
+        width: 100%;
+    }
 }
